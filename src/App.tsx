@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import {
   BrowserRouter,
   Routes,
@@ -6,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
+import { store } from './redux/store';
 import Header from './components/Header/Header';
 import List from './views/List/List';
 import Film from './views/Film/Film';
@@ -18,7 +20,7 @@ const darkTheme = createMuiTheme({
 
 export default function App() {
   return (
-    <div>
+    <Provider store={store}>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <BrowserRouter>
@@ -30,6 +32,6 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
-    </div>
+    </Provider>
   );
 }

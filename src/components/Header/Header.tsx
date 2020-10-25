@@ -2,9 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Link,
-  BrowserRouter,
-  Routes,
-  Route,
 } from 'react-router-dom';
 
 export default function Header() {

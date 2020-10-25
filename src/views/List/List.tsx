@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import {
   Grid,
   Paper,
   Container,
 } from '@material-ui/core';
-import { API } from '../../api/api';
+import { fetchFilms } from '../../redux/filmsReducer';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -20,11 +21,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export default function List() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // TODO - remove
-    API.fetchFilms().then((data) => { console.log(data); });
-  }, []);
+    dispatch(fetchFilms());
+  }, [dispatch]);
   return (
     <Container maxWidth="lg">
       <Grid container spacing={3}>

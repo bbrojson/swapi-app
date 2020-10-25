@@ -15,8 +15,10 @@ instance.interceptors.response.use(
   (response) => response.data,
   (error) => {
     if (error.response) {
+      // eslint-disable-next-line no-console
       console.log(error.response.data.message);
     } else {
+      // eslint-disable-next-line no-console
       console.log(error.message);
     }
     return Promise.reject(error);
