@@ -13,6 +13,7 @@
   - redux-thunk
   - reselect
 - Material-UI
+- React Router 6.0.0alpha [much better](https://medium.com/@manishsundriyal/whats-new-in-react-router-v6-20eefe665be9)
 - axios
 - i18next
 
