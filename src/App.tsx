@@ -19,8 +19,8 @@ const darkTheme = createMuiTheme({
 export default function App() {
   return (
     <div>
-      <CssBaseline />
       <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
         <BrowserRouter>
           <Header />
           <Routes>
