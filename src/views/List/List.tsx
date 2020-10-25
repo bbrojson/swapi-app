@@ -6,7 +6,7 @@ import {
   Paper,
   Container,
 } from '@material-ui/core';
-import { fetchFilms } from '../../redux/filmsReducer';
+import { fetchFilms } from '../../store/filmsSlice';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {

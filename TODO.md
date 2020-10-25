@@ -5,7 +5,7 @@
  + routs, views and structure
  + add Material-UI
  + fetch api module
- - redux
+ + redux
  - UI and styles
  - docs
  - tests

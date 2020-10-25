@@ -1,4 +1,5 @@
 export type Film = {
+  id: string
   title: string,
   opening_crawl: string,
   director: string,
@@ -18,3 +19,12 @@ export type FilmsResponse = {
   next: string | null;
   results: Film[];
 };
+
+export type Comment = {
+  id: string
+  filmId: string
+  body: string
+  nickname: string
+};
+
+export type CommentsByFilm = { [key: string]: Comment[] };
