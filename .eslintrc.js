@@ -13,7 +13,8 @@ module.exports = {
     "arrow-parens": 1,
     "@typescript-eslint/no-shadow": 1,
 
-    "react/require-default-props": [2, { ignoreFunctionalComponents: true }]
+    "react/require-default-props": [2, { ignoreFunctionalComponents: true }],
+    "@typescript-eslint/explicit-module-boundary-types": 0
     
     // "no-shadow": 1,
     // "arrow-body-style": 1,

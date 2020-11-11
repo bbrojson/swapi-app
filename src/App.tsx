@@ -32,7 +32,6 @@ const darkTheme = createMuiTheme({
     ].join(','),
   },
 });
-console.log(darkTheme);
 darkTheme.palette.background.default = '#191919';
 darkTheme.palette.background.paper = '#232323';
 darkTheme.palette.text.secondary = '#787878';
