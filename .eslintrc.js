@@ -12,6 +12,8 @@ module.exports = {
     "linebreak-style": 0,
     "arrow-parens": 1,
     "@typescript-eslint/no-shadow": 1,
+
+    "react/require-default-props": [2, { ignoreFunctionalComponents: true }]
     
     // "no-shadow": 1,
     // "arrow-body-style": 1,

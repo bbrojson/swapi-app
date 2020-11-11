@@ -31,7 +31,7 @@ export default function Header() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Button className={classes.logoLink} color="primary" component={RouterLink} to="/list">
-              <Typography align="center" component="h1" variant="h3" className={classes.starJediFont}>
+              <Typography align="center" component="h1" variant="h1" className={classes.starJediFont}>
                 {t('SW APJ  $ #')}
               </Typography>
             </Button>
