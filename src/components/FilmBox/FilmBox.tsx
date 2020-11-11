@@ -12,7 +12,10 @@ import Trait from '../Trait/Trait';
 import cameraSVG from './camera.svg';
 
 type Props = {
-  film: any,
+  title: string,
+  director: string,
+  releaseDate: string,
+  openingCrawl: string,
 };
 
 const useStyles = makeStyles(() => ({
@@ -28,24 +31,25 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function FilmBox({
-  film,
+  title,
+  director,
+  releaseDate,
+  openingCrawl,
 }: Props) {
   const classes = useStyles();
   const { t } = useTranslation();
 
   return (
     <div className={classes.root}>
-      <Photo alt="" />
-      <Typography className={classes.typoHeader} component="h3" variant="h3">Heading 1</Typography>
+      <Photo alt={title} />
+      <Typography className={classes.typoHeader} component="h3" variant="h3">{title}</Typography>
       <Typography className={classes.typoBody2} variant="body2" gutterBottom color="textSecondary">
-        body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-        unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam
-        dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
+        {openingCrawl}
       </Typography>
       <Divider light />
       <Box pt={2} pb={2} display="flex" justifyContent="flex-start" alignItems="center">
-        <Trait src={cameraSVG} alt={t('Director')} text="George Lucas" />
-        <Trait src={cameraSVG} alt={t('Year of production')} text="1977" />
+        <Trait src={cameraSVG} alt={t('Director')} text={director} />
+        <Trait src={cameraSVG} alt={t('Year of production')} text={releaseDate} />
       </Box>
     </div>
   );

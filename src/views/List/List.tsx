@@ -35,9 +35,20 @@ export default function List() {
         {hasErrors && (<SnackbarContent className={classes.snackbarContent} message={t('Error occured')} />)}
         {!loading && !hasErrors
           && (
-            films.map((film) => (
-              <Grid item xs={12} md={4}>
-                <FilmBox film={film} />
+            films.map(({
+              episode_id: id,
+              title,
+              director,
+              release_date: releaseDate,
+              opening_crawl: openingCrawl,
+            }) => (
+              <Grid key={id} item xs={12} md={4}>
+                <FilmBox
+                  title={title}
+                  director={director}
+                  releaseDate={releaseDate}
+                  openingCrawl={openingCrawl}
+                />
               </Grid>
             ))
           )}

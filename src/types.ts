@@ -1,5 +1,5 @@
 export type Film = {
-  id: string
+  episode_id: string
   title: string,
   opening_crawl: string,
   director: string,
