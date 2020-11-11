@@ -8,7 +8,7 @@ import {
   Container,
 } from '@material-ui/core';
 import { fetchFilms, filmsSelector } from '../../store/filmsSlice';
-import FilmBox from '../../components/FilmBox/FilmBox';
+import SearchList from '../../components/SearchList/SearchList';
 import Loader from '../../components/Loader/Loader';
 
 const useStyles = makeStyles(() => ({
@@ -22,9 +22,8 @@ export default function List() {
   const classes = useStyles();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { hasErrors, loading, films } = useSelector(filmsSelector);
+  const { hasErrors, loading } = useSelector(filmsSelector);
 
-  console.log('films', films);
   useEffect(() => {
     dispatch(fetchFilms());
   }, [dispatch]);
@@ -33,25 +32,7 @@ export default function List() {
       <Grid container spacing={3}>
         {loading && (<Loader isLoading={loading} />)}
         {hasErrors && (<SnackbarContent className={classes.snackbarContent} message={t('Error occured')} />)}
-        {!loading && !hasErrors
-          && (
-            films.map(({
-              episode_id: id,
-              title,
-              director,
-              release_date: releaseDate,
-              opening_crawl: openingCrawl,
-            }) => (
-              <Grid key={id} item xs={12} md={4}>
-                <FilmBox
-                  title={title}
-                  director={director}
-                  releaseDate={releaseDate}
-                  openingCrawl={openingCrawl}
-                />
-              </Grid>
-            ))
-          )}
+        {!loading && !hasErrors && (<SearchList />)}
       </Grid>
     </Container>
   );

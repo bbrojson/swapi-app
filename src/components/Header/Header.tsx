@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Typography,
   Button,
   Divider,
   Container,
@@ -11,6 +10,7 @@ import {
 import {
   Link as RouterLink,
 } from 'react-router-dom';
+import logo from '../../logo.svg';
 
 const useStyles = makeStyles(() => ({
   starJediFont: {
@@ -19,6 +19,7 @@ const useStyles = makeStyles(() => ({
   logoLink: {
     display: 'block',
     color: '#fff',
+    textAlign: 'center',
   },
 }));
 
@@ -31,9 +32,7 @@ export default function Header() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Button className={classes.logoLink} color="primary" component={RouterLink} to="/list">
-              <Typography align="center" component="h1" variant="h1" className={classes.starJediFont}>
-                {t('SW APJ  $ #')}
-              </Typography>
+              <img src={logo} alt={t('SW API')} />
             </Button>
           </Grid>
           <Grid item xs={12}>
