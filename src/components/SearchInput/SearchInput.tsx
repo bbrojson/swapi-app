@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import { Paper, InputBase, IconButton } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { Paper, InputBase } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -18,9 +17,6 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flex: 1,
     color: theme.palette.text.secondary,
     minHeight: '62px',
-  },
-  iconButton: {
-    padding: 10,
   },
 }));
 

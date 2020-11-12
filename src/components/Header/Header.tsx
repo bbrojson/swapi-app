@@ -21,6 +21,9 @@ const useStyles = makeStyles(() => ({
     color: '#fff',
     textAlign: 'center',
   },
+  img: {
+    width: '100%',
+  },
 }));
 
 export default function Header() {
@@ -28,7 +31,7 @@ export default function Header() {
   const classes = useStyles();
   return (
     <header>
-      <Container maxWidth="lg">
+      <Container maxWidth="md">
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Button className={classes.logoLink} color="primary" component={RouterLink} to="/list">
