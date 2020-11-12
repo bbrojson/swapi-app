@@ -1,4 +1,6 @@
 export type Film = {
+  id: string
+  url: string
   episode_id: string
   title: string,
   opening_crawl: string,

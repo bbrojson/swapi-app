@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FilmsResponse } from '../types';
+import { FilmsResponse, Film } from '../types';
 
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/api`,
@@ -27,4 +27,5 @@ instance.interceptors.response.use(
 
 export const API = {
   fetchFilms: () => instance.get<void, FilmsResponse>('/films/'),
+  fetchFilm: (id: string) => instance.get<void, Film>(`/films/${id}/`),
 };

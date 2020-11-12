@@ -21,7 +21,7 @@ function SearchList({ films }: Props) {
         <SearchInput />
       </Grid>
       {films.map(({
-        episode_id: id,
+        id,
         title,
         director,
         release_date: releaseDate,
