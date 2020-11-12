@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import { Paper, InputBase } from '@material-ui/core';
+import { setFilter } from '../../store/filmsSlice';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -22,7 +24,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 export default function SearchInput() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  function hendleChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
+    const string = event.target.value.toLowerCase();
+    dispatch(setFilter(string === '' ? null : string));
+  }
 
   return (
     <Paper component="form" className={classes.root}>
@@ -30,6 +38,7 @@ export default function SearchInput() {
         className={classes.input}
         placeholder={t('Search')}
         inputProps={{ 'aria-label': 'search SWAPI films' }}
+        onChange={hendleChangeInput}
       />
     </Paper>
   );

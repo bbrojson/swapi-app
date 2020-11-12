@@ -5,16 +5,18 @@ import { Film } from '../types';
 import { AppThunk, RootState } from './store';
 import { API } from '../api/api';
 
-interface FilmState {
+export interface FilmState {
   loading: boolean;
   hasErrors: string | null;
   films: Film[];
+  filterText: string;
 }
 
 export const initialState: FilmState = {
   loading: false,
   hasErrors: null,
   films: [],
+  filterText: '',
 };
 
 const filmsSlice = createSlice({
@@ -34,6 +36,9 @@ const filmsSlice = createSlice({
       state.loading = false;
       state.hasErrors = action.payload;
     },
+    setFilter(state, action: PayloadAction<string>) {
+      state.filterText = action.payload;
+    },
   },
 });
 
@@ -43,6 +48,7 @@ export const {
   getFilmsStart,
   getFilmsSucces,
   getFilmsFailure,
+  setFilter,
 } = filmsSlice.actions;
 
 export default filmsSlice.reducer;

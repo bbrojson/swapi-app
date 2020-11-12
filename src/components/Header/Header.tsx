@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <header>
       <Container maxWidth="md">
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={12}>
             <Button className={classes.logoLink} color="primary" component={RouterLink} to="/list">
               <img src={logo} alt={t('SW API')} />

@@ -1,15 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { createSelector } from '@reduxjs/toolkit';
 import {
   Grid,
 } from '@material-ui/core';
-import { filmsSelector } from '../../store/filmsSlice';
+import { FilmState } from '../../store/filmsSlice';
+import { Film } from '../../types';
+import { RootState } from '../../store/store';
 import FilmBox from '../FilmBox/FilmBox';
 import SearchInput from '../SearchInput/SearchInput';
 
-export default function SearchList() {
-  const { films } = useSelector(filmsSelector);
+type Props = {
+  films: Film[],
+};
 
+function SearchList({ films }: Props) {
   return (
     <>
       <Grid item xs={12}>
@@ -34,3 +39,21 @@ export default function SearchList() {
     </>
   );
 }
+
+const selectFilms = (state: RootState): FilmState => state.films;
+const selectFilteredFilms = createSelector(
+  [selectFilms],
+  ({ films, filterText }) => {
+    if (filterText !== null) {
+      return films.filter((film) => (film.title.toLowerCase().indexOf(filterText) !== -1));
+    }
+    return films;
+  },
+);
+const mapStateToProps = (state: RootState) => ({
+  films: selectFilteredFilms(state),
+});
+
+export default connect(
+  mapStateToProps,
+)(SearchList);

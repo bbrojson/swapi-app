@@ -6,8 +6,8 @@
  + add Material-UI
  + fetch api module
  + redux
- - UI and styles
- - filter films
+ + UI and styles
+ + filter films
  - add opinion
  - docs
  - tests
