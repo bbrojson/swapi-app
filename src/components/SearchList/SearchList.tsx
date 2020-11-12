@@ -29,6 +29,7 @@ function SearchList({ films }: Props) {
       }) => (
         <Grid key={id} item xs={12} md={4}>
           <FilmBox
+            id={id}
             title={title}
             director={director}
             releaseDate={releaseDate}

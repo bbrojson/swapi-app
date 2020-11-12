@@ -4,13 +4,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
   Typography,
+  Button,
   Divider,
 } from '@material-ui/core';
+import {
+  Link as RouterLink,
+} from 'react-router-dom';
 import Photo from '../Photo/Photo';
 import Trait from '../Trait/Trait';
 import cameraSVG from './camera.svg';
 
 type Props = {
+  id: string,
   title: string,
   director: string,
   releaseDate: string,
@@ -27,9 +32,16 @@ const useStyles = makeStyles(() => ({
   typoBody2: {
     margin: '0 0 14px',
   },
+  link: {
+    lineHeight: '1',
+    color: '#fff',
+    fontSize: '1em',
+    padding: '0',
+  },
 }));
 
 export default function FilmBox({
+  id,
   title,
   director,
   releaseDate,
@@ -41,7 +53,11 @@ export default function FilmBox({
   return (
     <div className={classes.root}>
       <Photo alt={title} />
-      <Typography className={classes.typoHeader} component="h3" variant="h3">{title}</Typography>
+      <Typography className={classes.typoHeader} component="h3" variant="h3">
+        <Button className={classes.link} color="primary" component={RouterLink} to={`/film/${id}`}>
+          {title}
+        </Button>
+      </Typography>
       <Typography className={classes.typoBody2} variant="body2" gutterBottom color="textSecondary">
         {openingCrawl}
       </Typography>
