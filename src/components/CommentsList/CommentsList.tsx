@@ -13,7 +13,7 @@ type Props = {
 export default function CommentsList({
   filmId,
 }: Props) {
-  const comments = useSelector(commentSelector(filmId));
+  const { comments } = useSelector(commentSelector(filmId));
 
   // * no need: comments are in sessionStorage
   // useEffect(() => {

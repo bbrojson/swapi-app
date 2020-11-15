@@ -57,7 +57,14 @@ export default comments.reducer;
 
 export const commentsSelector = (state: RootState) => state.comments;
 export const commentSelector = (filmId: string) => (
-  (state: RootState) => state.comments.commentsByFilm[filmId]);
+  (state: RootState) => {
+    const currentComments = state.comments.commentsByFilm[filmId];
+    return {
+      comments: currentComments,
+      loading: state.comments.loading,
+      hasErrors: state.comments.hasErrors,
+    };
+  });
 
 export const fetchComments = (): AppThunk => async (dispatch) => {
   try {
