@@ -9,6 +9,7 @@ import { fetchFilm, filmSelector } from '../../store/filmsSlice';
 import FilmBox from '../../components/FilmBox/FilmBox';
 import Loader from '../../components/Loader/Loader';
 import ErrorInfo from '../../components/ErrorInfo/ErrorInfo';
+import CommentsForm from '../../components/CommentsForm/CommentsForm';
 
 export default function Film() {
   const { id: filmId } = useParams();
@@ -20,7 +21,7 @@ export default function Film() {
   }, [dispatch]);
 
   const {
-    url: id,
+    id,
     title,
     director,
     release_date: releaseDate,
@@ -41,6 +42,11 @@ export default function Film() {
                 director={director}
                 releaseDate={releaseDate}
                 openingCrawl={openingCrawl}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <CommentsForm
+                id={id}
               />
             </Grid>
           </Grid>

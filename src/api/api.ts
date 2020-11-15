@@ -1,6 +1,7 @@
+import { rejects } from 'assert';
 import axios from 'axios';
 
-import { FilmsResponse, Film } from '../types';
+import { FilmsResponse, Film, Comment } from '../types';
 
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/api`,
@@ -28,4 +29,11 @@ instance.interceptors.response.use(
 export const API = {
   fetchFilms: () => instance.get<void, FilmsResponse>('/films/'),
   fetchFilm: (id: string) => instance.get<void, Film>(`/films/${id}/`),
+  // ! absolutly faked
+  fetchAddComment: (comment: Comment): Promise<Comment> => new Promise(
+    (resolve) => setTimeout(() => resolve({
+      ...comment,
+      id: Date(),
+    }), 500),
+  ),
 };

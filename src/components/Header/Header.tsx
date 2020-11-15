@@ -22,7 +22,8 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   img: {
-    width: '100%',
+    maxWidth: '100%',
+    display: 'block',
   },
 }));
 
@@ -35,7 +36,7 @@ export default function Header() {
         <Grid container>
           <Grid item xs={12}>
             <Button className={classes.logoLink} color="primary" component={RouterLink} to="/list">
-              <img src={logo} alt={t('SW API')} />
+              <img className={classes.img} src={logo} alt={t('SW API')} />
             </Button>
           </Grid>
           <Grid item xs={12}>

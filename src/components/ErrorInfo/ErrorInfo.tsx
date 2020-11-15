@@ -14,6 +14,6 @@ export default function ErrorInfo() {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
-    <SnackbarContent className={classes.snackbarContent} message={t('Error occured')} />
+    <SnackbarContent className={classes.snackbarContent} message={t('Something went wrong!')} />
   );
 }

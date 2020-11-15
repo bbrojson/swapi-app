@@ -3,7 +3,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Comment, CommentsByFilm } from '../types';
 import { LocalDB } from '../api/sessionStorage';
-import { AppThunk } from './store';
+import { AppThunk, RootState } from './store';
+import { API } from '../api/api';
 
 interface CommentsState {
   commentsByFilm: CommentsByFilm
@@ -30,6 +31,16 @@ const comments = createSlice({
       state.loading = false;
       state.hasErrors = null;
     },
+    addCommentSuccess(state, action: PayloadAction<Comment>) {
+      const comment = action.payload;
+      const filmsComments = state.commentsByFilm[comment.filmId];
+      if (!filmsComments) {
+        state.commentsByFilm[action.payload.filmId] = [];
+      }
+      state.commentsByFilm[action.payload.filmId].push(comment);
+      state.loading = false;
+      state.hasErrors = null;
+    },
     fetchCommentsFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.hasErrors = action.payload;
@@ -40,9 +51,12 @@ const comments = createSlice({
 export const {
   fetchCommentsStart,
   getCommentsSuccess,
+  addCommentSuccess,
   fetchCommentsFailure,
 } = comments.actions;
 export default comments.reducer;
+
+export const commentsSelector = (state: RootState) => state.comments;
 
 export const fetchComments = (): AppThunk => async (dispatch) => {
   try {
@@ -57,8 +71,8 @@ export const fetchComments = (): AppThunk => async (dispatch) => {
 export const fetchAddComment = (comment: Comment): AppThunk => async (dispatch) => {
   try {
     dispatch(fetchCommentsStart());
-    const commentsByFilm = await LocalDB.saveComments(comment) as CommentsByFilm;
-    dispatch(getCommentsSuccess(commentsByFilm));
+    const newComment = await API.fetchAddComment(comment);
+    dispatch(addCommentSuccess(newComment));
   } catch (err) {
     dispatch(fetchCommentsFailure(err));
   }
