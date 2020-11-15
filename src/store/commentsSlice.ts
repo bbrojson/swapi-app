@@ -2,7 +2,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Comment, CommentsByFilm } from '../types';
-import { LocalDB } from '../api/sessionStorage';
 import { AppThunk, RootState } from './store';
 import { API } from '../api/api';
 
@@ -63,7 +62,7 @@ export const commentSelector = (filmId: string) => (
 export const fetchComments = (): AppThunk => async (dispatch) => {
   try {
     dispatch(fetchCommentsStart());
-    const commentsByFilm = await LocalDB.loadComments() as CommentsByFilm;
+    const commentsByFilm = await API.fetchComments();
     dispatch(getCommentsSuccess(commentsByFilm));
   } catch (err) {
     dispatch(fetchCommentsFailure(err));

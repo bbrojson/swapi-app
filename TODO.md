@@ -8,6 +8,6 @@
  + redux
  + UI and styles
  + filter films
- - add opinion
+ + add opinion
  - docs
  - tests

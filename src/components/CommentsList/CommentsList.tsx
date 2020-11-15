@@ -15,7 +15,7 @@ export default function CommentsList({
 }: Props) {
   const comments = useSelector(commentSelector(filmId));
 
-  // * no need: comments are in localstorage
+  // * no need: comments are in sessionStorage
   // useEffect(() => {
   //   dispatch(fetchComments(filmId));
   // }, [dispatch]);

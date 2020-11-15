@@ -70,7 +70,7 @@ export default function CommentsForm({ filmId }: Props) {
       <>
         {loading && (<Loader isLoading={loading} />)}
         {hasErrors && (<ErrorInfo />)}
-        <SnackbarContent className={classes.snackbar} message={t('Thank you for your comment.')} />
+        {!loading && !hasErrors && <SnackbarContent className={classes.snackbar} message={t('Thank you for your comment.')} />}
       </>
     );
   }

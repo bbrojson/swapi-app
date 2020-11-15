@@ -1,12 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import { Comment, CommentsByFilm } from '../types';
 
-const SESSION_STORAGE_APP_COMMENT_ID = 'SESSION_STORAGE_APP_COMMENT_ID';
-
 export function saveToSessionStorage<T>(key: string, value: T) {
   return new Promise((resolve, reject) => {
     try {
-      localStorage.setItem(key, JSON.stringify(value));
+      sessionStorage.setItem(key, JSON.stringify(value));
       resolve(value);
     } catch (e) {
       reject();
@@ -17,10 +15,13 @@ export function saveToSessionStorage<T>(key: string, value: T) {
 function addCommentToSessionStorage(comment: Comment): Promise<CommentsByFilm> {
   return new Promise((resolve, reject) => {
     try {
-      const comments = JSON.parse(localStorage.getItem(SESSION_STORAGE_APP_COMMENT_ID));
+      let comments = JSON.parse(sessionStorage.getItem(process.env.REACT_APP_SESSION_STORAGE_KEY));
+      if (!comments) {
+        comments = [];
+      }
       comments[comment.filmId].push(comment);
 
-      localStorage.setItem(SESSION_STORAGE_APP_COMMENT_ID, JSON.stringify(comments));
+      sessionStorage.setItem(process.env.REACT_APP_SESSION_STORAGE_KEY, JSON.stringify(comments));
       resolve(comments);
     } catch (e) {
       reject();
@@ -31,7 +32,7 @@ function addCommentToSessionStorage(comment: Comment): Promise<CommentsByFilm> {
 function loadFromSessionStorage(key: string): Promise<CommentsByFilm> {
   return new Promise((resolve, reject) => {
     try {
-      const value = JSON.parse(localStorage.getItem(key));
+      const value = JSON.parse(sessionStorage.getItem(key));
       resolve(value);
     } catch (e) {
       reject();
@@ -43,5 +44,5 @@ export const LocalDB = {
   saveComments: (comment: Comment): Promise<CommentsByFilm> => (
     addCommentToSessionStorage(comment)),
   loadComments: (): Promise<CommentsByFilm> => (
-    loadFromSessionStorage(SESSION_STORAGE_APP_COMMENT_ID)),
+    loadFromSessionStorage(process.env.REACT_APP_SESSION_STORAGE_KEY)),
 };

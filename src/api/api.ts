@@ -1,6 +1,10 @@
 import axios from 'axios';
-
-import { FilmsResponse, Film, Comment } from '../types';
+import {
+  FilmsResponse,
+  Film,
+  Comment,
+  CommentsByFilm,
+} from '../types';
 
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}/api`,
@@ -30,9 +34,41 @@ export const API = {
   fetchFilm: (id: string) => instance.get<void, Film>(`/films/${id}/`),
   // ! absolutly faked
   fetchAddComment: (comment: Comment): Promise<Comment> => new Promise(
-    (resolve) => setTimeout(() => resolve({
-      ...comment,
-      id: Date(),
-    }), 500),
+    (resolve, reject) => setTimeout(() => {
+      try {
+        const newComment = {
+          ...comment,
+          id: Date(),
+        };
+        let comments = JSON.parse(
+          sessionStorage.getItem(process.env.REACT_APP_SESSION_STORAGE_KEY),
+        );
+        if (!comments) {
+          comments = {};
+        }
+        if (!comments[comment.filmId]) {
+          comments[comment.filmId] = [];
+        }
+        comments[comment.filmId].push(newComment);
+
+        sessionStorage.setItem(process.env.REACT_APP_SESSION_STORAGE_KEY, JSON.stringify(comments));
+        resolve(newComment);
+      } catch (error) {
+        reject(error);
+        // do nothiong, probably storage is blocked by browser settings
+      }
+    }, 500),
+  ),
+  // ! faked delay
+  fetchComments: (): Promise<CommentsByFilm> => new Promise(
+    (resolve, reject) => setTimeout(() => {
+      try {
+        const session = window.sessionStorage.getItem(process.env.REACT_APP_SESSION_STORAGE_KEY);
+        const commentsByFilm = JSON.parse(session);
+        resolve(commentsByFilm || {});
+      } catch (error) {
+        reject();
+      }
+    }, 500),
   ),
 };

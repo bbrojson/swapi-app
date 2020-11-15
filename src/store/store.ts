@@ -11,13 +11,6 @@ const store = configureStore({
   },
 });
 
-store.subscribe(() => {
-  window.sessionStorage.setItem(
-    process.env.REACT_SESSION_STORAGE_KEY,
-    JSON.stringify(store.getState()),
-  );
-});
-
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
 export default store;
