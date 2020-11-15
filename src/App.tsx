@@ -1,23 +1,62 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch } from 'react-redux';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
 
-function App() {
+import Header from './components/Header/Header';
+import List from './views/List/List';
+import Film from './views/Film/Film';
+import { fetchComments } from './store/commentsSlice';
+
+const darkTheme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+  typography: {
+    fontFamily: [
+      'Gilroy-Extra',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+  },
+});
+darkTheme.palette.background.default = '#191919';
+darkTheme.palette.background.paper = '#232323';
+darkTheme.palette.text.secondary = '#787878';
+darkTheme.typography.h3.fontSize = '2.187rem';
+darkTheme.typography.body1.fontSize = '1.062rem';
+darkTheme.typography.body2.fontSize = '0.9375rem';
+darkTheme.typography.body2.lineHeight = '1.625rem';
+
+export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchComments());
+  }, [dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/list" element={<List />} />
+          <Route path="/film/:id" element={<Film />} />
+          <Route path="/" element={<List />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
-
-export default App;

@@ -1,8 +1,8 @@
 # swapi-app
 
-![swapi-app](docs/swapi-app.png)
+[![swapi-app](docs/screen.png)](https://swapi-e4d1ac.netlify.app/)
 
-### [Live demo](https://TODO_URL.netlify.com/)
+### [Live demo](https://swapi-e4d1ac.netlify.app/)
 
 # Stack:
 - TypeScript
@@ -13,6 +13,7 @@
   - redux-thunk
   - reselect
 - Material-UI
+- React Router 6.0.0alpha [much better](https://medium.com/@manishsundriyal/whats-new-in-react-router-v6-20eefe665be9)
 - axios
 - i18next
 
