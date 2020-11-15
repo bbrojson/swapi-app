@@ -1,6 +1,6 @@
 # swapi-app
 
-![swapi-app](docs/screen.png)
+[![swapi-app](docs/screen.png)](https://swapi-e4d1ac.netlify.app/)
 
 ### [Live demo](https://swapi-e4d1ac.netlify.app/)
 
