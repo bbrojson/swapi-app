@@ -3,7 +3,7 @@ import { Comment, CommentsByFilm } from '../types';
 
 const SESSION_STORAGE_APP_COMMENT_ID = 'SESSION_STORAGE_APP_COMMENT_ID';
 
-function saveToSessionStorage<T>(key: string, value: T) {
+export function saveToSessionStorage<T>(key: string, value: T) {
   return new Promise((resolve, reject) => {
     try {
       localStorage.setItem(key, JSON.stringify(value));
