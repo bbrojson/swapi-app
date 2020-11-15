@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flex: 1,
     color: theme.palette.text.secondary,
     minHeight: '62px',
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 'auto',
+    },
   },
 }));
 

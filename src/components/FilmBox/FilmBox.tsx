@@ -50,6 +50,8 @@ export default function FilmBox({
   const classes = useStyles();
   const { t } = useTranslation();
 
+  const year = releaseDate.split('-')[0];
+
   return (
     <div className={classes.root}>
       <Photo alt={title} />
@@ -64,7 +66,7 @@ export default function FilmBox({
       <Divider light />
       <Box pt={2} pb={2} display="flex" justifyContent="flex-start" alignItems="center">
         <Trait src={cameraSVG} alt={t('Director')} text={director} />
-        <Trait src={cameraSVG} alt={t('Year of production')} text={releaseDate} />
+        <Trait src={cameraSVG} alt={t('Year of production')} text={year} />
       </Box>
     </div>
   );

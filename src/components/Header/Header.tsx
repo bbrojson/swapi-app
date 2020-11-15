@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
   img: {
     maxWidth: '100%',
     display: 'block',
+    margin: '0 auto',
   },
 }));
 

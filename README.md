@@ -1,8 +1,8 @@
 # swapi-app
 
-![swapi-app](docs/swapi-app.png)
+![swapi-app](docs/screen.png)
 
-### [Live demo](https://TODO_URL.netlify.com/)
+### [Live demo](https://swapi-e4d1ac.netlify.app/)
 
 # Stack:
 - TypeScript
