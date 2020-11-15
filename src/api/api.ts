@@ -1,4 +1,3 @@
-import { rejects } from 'assert';
 import axios from 'axios';
 
 import { FilmsResponse, Film, Comment } from '../types';

@@ -10,6 +10,7 @@ import FilmBox from '../../components/FilmBox/FilmBox';
 import Loader from '../../components/Loader/Loader';
 import ErrorInfo from '../../components/ErrorInfo/ErrorInfo';
 import CommentsForm from '../../components/CommentsForm/CommentsForm';
+import CommentsList from '../../components/CommentsList/CommentsList';
 
 export default function Film() {
   const { id: filmId } = useParams();
@@ -46,7 +47,12 @@ export default function Film() {
             </Grid>
             <Grid item xs={12}>
               <CommentsForm
-                id={id}
+                filmId={id}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <CommentsList
+                filmId={id}
               />
             </Grid>
           </Grid>

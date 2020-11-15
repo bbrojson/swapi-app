@@ -1,6 +1,6 @@
-import React, { useState, useEffect, ReactEventHandler } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
   TextField,
@@ -9,13 +9,13 @@ import {
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { fetchAddComment } from '../../store/commentsSlice';
-import { Comment } from '../../types';
+import { fetchAddComment, commentsSelector } from '../../store/commentsSlice';
+import Loader from '../Loader/Loader';
+import ErrorInfo from '../ErrorInfo/ErrorInfo';
 
 type Props = {
-  id: string,
+  filmId: string,
 };
-type SetStateInputs = { [x: string]: string; };
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,10 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CommentsForm({ id }: Props) {
+export default function CommentsForm({ filmId }: Props) {
   const { t } = useTranslation();
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { loading, hasErrors } = useSelector(commentsSelector);
   const [isCommented, setIsCommented] = useState(false);
   const [set, setState] = useState({
     nickname: '',
@@ -58,14 +59,20 @@ export default function CommentsForm({ id }: Props) {
     setIsCommented(true);
     dispatch(fetchAddComment({
       id: 'newly added',
-      filmId: id,
+      filmId,
       body: set.comment,
       nickname: set.nickname,
     }));
   }
 
   if (isCommented) {
-    return <SnackbarContent className={classes.snackbar} message={t('Thank you for your comment.')} />;
+    return (
+      <>
+        {loading && (<Loader isLoading={loading} />)}
+        {hasErrors && (<ErrorInfo />)}
+        <SnackbarContent className={classes.snackbar} message={t('Thank you for your comment.')} />
+      </>
+    );
   }
 
   return (
