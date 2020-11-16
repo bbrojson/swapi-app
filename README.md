@@ -2,7 +2,8 @@
 
 [![swapi-app](docs/screen.png)](https://swapi-e4d1ac.netlify.app/)
 
-### [Live demo](https://swapi-e4d1ac.netlify.app/)
+[Live demo![Netlify Status](https://api.netlify.com/api/v1/badges/9f0f75ce-5edd-4b09-a2af-de50cc9d3dee/deploy-status)](https://swapi-e4d1ac.netlify.app/)
+
 
 # Stack:
 - TypeScript
