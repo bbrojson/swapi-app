@@ -37,6 +37,9 @@ const useStyles = makeStyles(() => ({
     color: '#fff',
     fontSize: '1em',
     padding: '0',
+    '&:hover, &:focus': {
+      background: 'none',
+    },
   },
 }));
 

@@ -78,7 +78,7 @@ export default function CommentsForm({ filmId }: Props) {
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
+        <Typography component="strong" variant="h5">
           {t('Was it your favorite movie too?')}
         </Typography>
         <form onSubmit={handleSubmitComment} className={classes.form}>
