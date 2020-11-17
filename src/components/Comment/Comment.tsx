@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Typography,
 } from '@material-ui/core';
 
@@ -14,12 +15,14 @@ export default function Comments({
 }: Props) {
   return (
     <div>
-      <Typography component="strong" variant="h4">
-        {nickname}
-      </Typography>
-      <Typography variant="body2" gutterBottom color="textSecondary">
-        {body}
-      </Typography>
+      <Box pt={2}>
+        <Typography component="strong" variant="h5">
+          {nickname}
+        </Typography>
+        <Typography variant="body2" gutterBottom color="textSecondary">
+          {body}
+        </Typography>
+      </Box>
     </div>
   );
 }
