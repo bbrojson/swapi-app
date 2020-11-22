@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
-import { Paper, InputBase } from '@material-ui/core';
+import { FormControl, InputBase } from '@material-ui/core';
 import { setFilter } from '../../store/filmsSlice';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     alignItems: 'center',
     borderRadius: 0,
     background: '#fff',
-    margin: '50px 0 15px',
   },
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
     color: theme.palette.text.secondary,
     minHeight: '62px',
+    width: '100%',
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
@@ -36,13 +36,13 @@ export default function SearchInput() {
   }
 
   return (
-    <Paper component="form" className={classes.root}>
+    <FormControl className={classes.root}>
       <InputBase
         className={classes.input}
         placeholder={t('Search')}
         inputProps={{ 'aria-label': 'search SWAPI films' }}
         onChange={hendleChangeInput}
       />
-    </Paper>
+    </FormControl>
   );
 }
