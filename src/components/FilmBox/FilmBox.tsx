@@ -10,6 +10,7 @@ import {
 import {
   Link as RouterLink,
 } from 'react-router-dom';
+import { getYearFromDate } from '../../utils/dataParsers';
 import Photo from '../Photo/Photo';
 import Trait from '../Trait/Trait';
 import cameraSVG from './camera.svg';
@@ -53,7 +54,7 @@ export default function FilmBox({
   const classes = useStyles();
   const { t } = useTranslation();
 
-  const year = releaseDate.split('-')[0];
+  const year = getYearFromDate(releaseDate);
 
   return (
     <div className={classes.root}>
