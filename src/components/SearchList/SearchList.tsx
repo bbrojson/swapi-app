@@ -62,28 +62,35 @@ function SearchList({ films }: Props) {
 }
 
 const selectFilms = (state: RootState): FilmState => state.films;
+const selectSortType = (state: RootState): SortType => state.films.sortType;
 const selectFilteredFilms = createSelector(
   [selectFilms],
-  ({ films, filterText, sortType }) => {
-    const newFilms = [...films];
+  ({ films, filterText }) => {
+    if (filterText !== null) {
+      return films.filter((film) => (film.title.toLowerCase().indexOf(filterText) !== -1));
+    }
+    return films;
+  },
+);
+const selectSortedFilms = createSelector(
+  [selectSortType, selectFilteredFilms],
+  (sortType, films) => {
+    const sortedFilms = [...films];
     switch (sortType) {
       case SortType.ascending:
-        newFilms.sort((a, b) => a.title.localeCompare(b.title));
+        sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case SortType.descending:
-        newFilms.sort((b, a) => a.title.localeCompare(b.title));
+        sortedFilms.sort((b, a) => a.title.localeCompare(b.title));
         break;
       default:
         break;
     }
-    if (filterText !== null) {
-      return newFilms.filter((film) => (film.title.toLowerCase().indexOf(filterText) !== -1));
-    }
-    return newFilms;
+    return sortedFilms;
   },
 );
 const mapStateToProps = (state: RootState) => ({
-  films: selectFilteredFilms(state),
+  films: selectSortedFilms(state),
 });
 
 export default connect(
