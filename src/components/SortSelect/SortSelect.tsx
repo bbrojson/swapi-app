@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import {
@@ -7,7 +7,7 @@ import {
   FormHelperText,
   Select,
 } from '@material-ui/core';
-import { setSorting } from '../../store/filmsSlice';
+import { setSorting, filmsSelector } from '../../store/filmsSlice';
 import { SortType } from '../../types';
 
 const useStyles = makeStyles(() => createStyles({
@@ -20,6 +20,7 @@ export default function SortSelect() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { sortType } = useSelector(filmsSelector);
 
   function hendleChangeSelect(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value as SortType;
@@ -31,7 +32,7 @@ export default function SortSelect() {
       <Select
         native
         onChange={hendleChangeSelect}
-        value={SortType.default}
+        value={sortType}
       >
         {Object.values(SortType).map((type) => <option key={type} value={type}>{t(type)}</option>)}
       </Select>
