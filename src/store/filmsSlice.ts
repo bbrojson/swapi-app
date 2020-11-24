@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Film } from '../types';
+import { Film, SortType } from '../types';
 import { AppThunk, RootState } from './store';
 import { API } from '../api/api';
 
@@ -10,6 +10,7 @@ export interface FilmState {
   hasErrors: string | null;
   films: Film[];
   filterText: string;
+  sortType: SortType;
 }
 
 export const initialState: FilmState = {
@@ -17,6 +18,7 @@ export const initialState: FilmState = {
   hasErrors: null,
   films: [],
   filterText: '',
+  sortType: SortType.default,
 };
 
 const getIdFromUrl = (url: string) => (url.split('/').slice(-2, -1)[0]);
@@ -57,6 +59,9 @@ const filmsSlice = createSlice({
     setFilter(state, action: PayloadAction<string>) {
       state.filterText = action.payload;
     },
+    setSorting(state, action: PayloadAction<SortType>) {
+      state.sortType = action.payload;
+    },
   },
 });
 
@@ -76,6 +81,7 @@ export const {
   getFilmsFailure,
   getFilmSucces,
   setFilter,
+  setSorting,
 } = filmsSlice.actions;
 
 export default filmsSlice.reducer;

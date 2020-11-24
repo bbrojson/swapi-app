@@ -1,3 +1,9 @@
+export enum SortType {
+  default = 'defaultSort',
+  ascending = 'ascendingSort',
+  descending = 'descendingSort',
+}
+
 export type Film = {
   id: string
   url: string
