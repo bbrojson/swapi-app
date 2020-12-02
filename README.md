@@ -9,8 +9,8 @@
 - TypeScript
 - React
 - redux-toolkits
-  - immer
   - redux
+  - immer
   - redux-thunk
   - reselect
 - Material-UI
